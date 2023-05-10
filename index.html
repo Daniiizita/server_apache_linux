@@ -51,7 +51,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Python</h5>
-              <p class="card-text">Conhecimento intermediario, atualmente desenvolvendo um projeto em Django.</p>
+              <p class="card-text">Conhecimento intermediário, atualmente desenvolvendo um projeto em Django.</p>
             </div>
           </div>
         </div>
@@ -59,7 +59,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">HTML</h5>
-              <p class="card-text">Conhecimento intermediario, alguns projetos elaborados no GitHub.</p>
+              <p class="card-text">Conhecimento intermediário, alguns projetos elaborados no GitHub.</p>
             </div>
           </div>
         </div>
@@ -67,7 +67,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">CSS</h5>
-              <p class="card-text">Conhecimento intermediadiario, praticado juntamente com HTML.</p>
+              <p class="card-text">Conhecimento intermediadiário, praticado juntamente com HTML.</p>
             </div>
           </div>
         </div>
@@ -75,7 +75,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">SQL</h5>
-              <p class="card-text">Conhecimento intermediário para avançado..</p>
+              <p class="card-text">Conhecimento intermediário para avançado, uso de Banco de Dados Postgres e MySQL.</p>
             </div>
           </div>
         </div>
@@ -85,7 +85,7 @@
     <p></p>
 
     <section id="projetos" class="container">
-      <h2>Meus projetos no GitHub</h2>
+      <h2>Meus projetos</h2>
       <div id="github-repos" class="row"></div>
     </section>
     
@@ -114,13 +114,16 @@
     
       // Função para exibir os repositórios no elemento "github-repos"
       function displayRepos(repos) {
-        const githubRepos = document.getElementById('github-repos');
-    
-        repos.forEach(repo => {
-          const repoCard = createRepoCard(repo.name);
-          githubRepos.appendChild(repoCard);
+      const githubRepos = document.getElementById('github-repos');
+  
+      const maxRepos = 6; // Número máximo de repositórios a serem exibidos
+  
+      repos.slice(0, maxRepos).forEach(repo => {
+      const repoCard = createRepoCard(repo.name);
+      githubRepos.appendChild(repoCard);
         });
       }
+
     
       // Função para fazer a solicitação AJAX para a API do GitHub e processar os dados
       function fetchRepos() {
@@ -146,7 +149,7 @@
   </main>
 
   <footer class="container">
-    <p>&copy; Danielle Gonçalves de Paula - <a href="https://github.com/Daniiizita">Meu GitHub </a></p>
+    <p>&copy; Danielle Gonçalves de Paula - <a href="https://github.com/Daniiizita">Acesso ao meu GitHub</a></p>
   </footer>
   
 
