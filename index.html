@@ -4,55 +4,149 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seu Nome - Portfólio</title>
+  <title>Danielle de Paula - Portfólio</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
-  <script src="script.js"></script>
-  <script src="C:/Users/SECRETARIA 01/Desktop/Danielle 2022/Danielle 2023/Redes II/html_server_web_danielle/script.js"></script>
+  <style>
 
+  </style>
 </head>
 
 <body>
   <header>
-    <h1>Danielle Gonçalves de Paula</h1>
-    <nav>
-      <ul>
-        <li><a href="#">Sobre mim</a></li>
-        <li><a href="#">Habilidades</a></li>
-        <li><a href="#">Projetos</a></li>
-      </ul>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand mx-auto" href="#">Danielle Gonçalves de Paula</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#sobre-mim">Sobre mim</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#habilidades">Habilidades</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projetos">Projetos</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
   </header>
 
   <main>
-    <section id="sobre-mim">
+    <p></p>
+    <section id="sobre-mim" class="container">
       <h2>Sobre mim</h2>
       <p>Atualmente cursando o 7º Semestre em Bacharelado em Sistemas de Informação (BSI). Fiz alguns projetos em Python, alguns web pois tenho conhecimento considerável em HTML e CSS e alguma noçãozinha de JavaScript. Tenho bastante experiência com SQL, já pratiquei machine learning usando Python, tenho uma certa bagagem (pouca mas tenho noção) com Linux e atualmente estou desenvolvendo um projeto utilizando Django de Secretaria Escolar e no futuro pretendo fazer um projeto mais complexo e mais completo de gerenciador de tarefas usando Python.</p>
     </section>
 
-    <section id="habilidades">
+    <section id="habilidades" class="container">
       <h2>Habilidades</h2>
-      <ul>
-        <li>Python</li>
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript</li>
-        <li>SQL</li>
-        <li>Machine Learning</li>
-        <li>Linux</li>
-        <li>Django</li>
-      </ul>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Python</h5>
+              <p class="card-text">Conhecimento intermediario, atualmente desenvolvendo um projeto em Django.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">HTML</h5>
+              <p class="card-text">Conhecimento intermediario, alguns projetos elaborados no GitHub.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">CSS</h5>
+              <p class="card-text">Conhecimento intermediadiario, praticado juntamente com HTML.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">SQL</h5>
+              <p class="card-text">Conhecimento intermediário para avançado..</p>
+            </div>
+          </div>
+        </div>
+        <!-- Adicione os outros blocos de habilidades aqui -->
+      </div>
     </section>
+    <p></p>
 
-	<section id="projetos">
-		<h2>Meus projetos no GitHub</h2>
-		<ul id="github-repos"></ul>
-	</section>
-
+    <section id="projetos" class="container">
+      <h2>Meus projetos no GitHub</h2>
+      <div id="github-repos" class="row"></div>
+    </section>
+    
+    <script>
+      // Função para criar um elemento de card para cada repositório
+      function createRepoCard(name) {
+        const card = document.createElement('div');
+        card.classList.add('col-md-4');
+    
+        const cardContent = document.createElement('div');
+        cardContent.classList.add('card', 'mb-4');
+    
+        const cardBody = document.createElement('div');
+        cardBody.classList.add('card-body');
+    
+        const repoName = document.createElement('h5');
+        repoName.classList.add('card-title');
+        repoName.textContent = name;
+    
+        cardBody.appendChild(repoName);
+        cardContent.appendChild(cardBody);
+        card.appendChild(cardContent);
+    
+        return card;
+      }
+    
+      // Função para exibir os repositórios no elemento "github-repos"
+      function displayRepos(repos) {
+        const githubRepos = document.getElementById('github-repos');
+    
+        repos.forEach(repo => {
+          const repoCard = createRepoCard(repo.name);
+          githubRepos.appendChild(repoCard);
+        });
+      }
+    
+      // Função para fazer a solicitação AJAX para a API do GitHub e processar os dados
+      function fetchRepos() {
+        const username = 'Daniiizita'; // Substitua pelo seu nome de usuário do GitHub
+        const url = `https://api.github.com/users/${username}/repos`;
+    
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            const repos = data.filter(repo => !repo.fork); // Filtra apenas os repositórios originais
+            displayRepos(repos);
+          })
+          .catch(error => {
+            console.error('Erro ao buscar os repositórios do GitHub:', error);
+          });
+      }
+    
+      // Chamada da função fetchRepos para obter e exibir os repositórios
+      fetchRepos();
+    </script>    
+    
+    
   </main>
 
-  <footer>
-    <p>&copy; Danielle Gonçalves de Paula - Todos os direitos reservados</p>
+  <footer class="container">
+    <p>&copy; Danielle Gonçalves de Paula</p>
   </footer>
-</body>
 
-</html>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script
